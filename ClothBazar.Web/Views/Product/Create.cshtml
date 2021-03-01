@@ -1,0 +1,59 @@
+﻿@model List<Category>
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create Product</h2>
+
+<form id="createProduct">
+    <div class="form-group">
+        <label>Category</label>
+        <select class="form-control" name="CategoryID">
+            @foreach (var category in Model)
+             {
+                    <option value="@category.ID">@category.Name</option>
+             }
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Name</label>
+        <input class="form-control" name="Name" />
+    </div>
+
+    <div class="form-group">
+        <label>Description</label>
+        <input class="form-control" name="Description" />
+    </div>
+
+    <div class="form-group">
+        <label>Price</label>
+        <input class="form-control" name="Price" />
+    </div>
+  
+    <button id="savebtn" type="button" class="btn btn-primary">Save</button>
+</form>
+
+
+<script>
+    $("#savebtn").click(function () {
+        
+
+        $.ajax({
+            type: 'POST',
+            url: '/Product/Create',
+            data: {
+                Name: $("#name").val(),
+                Description: $("#desc").val(),
+                Price: $("#price").val()
+            }
+        })
+            .done(function (response) {
+                $("#tableContainer").html(response);
+                $("#actionContainer").html("");
+            })
+            .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("FAIL");
+            });
+    });
+</script>
+

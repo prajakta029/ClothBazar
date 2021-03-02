@@ -28,7 +28,7 @@ namespace ClothBazar.Services
         {
             using (var context = new CBContext())
             {
-                return context.Categories.Where(x => x.isFeatured && x.ImageURL != null).ToList();
+                return context.Categories.Where(x => x.ImageURL != null).ToList();
             }
         }
         public void SaveCategory(Category category)

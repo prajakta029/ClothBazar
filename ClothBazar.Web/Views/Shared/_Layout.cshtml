@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@{ 
+    ConfigurationsService configurationsService = new ConfigurationsService();
+}
+
+
+<!DOCTYPE html>
 <html>
 <head>
     <title>Zenna | Home 1</title>
@@ -367,7 +372,7 @@
                                     <div class="footer-socials">
                                         <div class="social-icons nobase">
                                             <a href="#"><i class="fa fa-twitter"></i></a>
-                                            <a href="#"><i class="fa fa-facebook"></i></a>
+                                            <a href="@configurationsService.GetConfig("FacebookURL").Value"><i class="fa fa-facebook"></i></a>
                                             <a href="#"><i class="fa fa-google-plus"></i></a>
                                         </div>
                                     </div>

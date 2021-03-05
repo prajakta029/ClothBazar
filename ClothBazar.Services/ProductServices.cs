@@ -11,6 +11,7 @@ namespace ClothBazar.Services
 {
     public class ProductServices
     {
+       
         public Product GetProduct(int ID)
         {
             using (var context = new CBContext())

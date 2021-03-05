@@ -1,4 +1,4 @@
-﻿@model List<Category>
+﻿@model NewProductViewModel
 @{
     ViewBag.Title = "Create";
 }
@@ -9,52 +9,41 @@
     <div class="form-group">
         <label>Category</label>
         <select class="form-control" name="CategoryID">
-            @foreach (var category in Model)
-             {
-                    <option value="@category.ID">@category.Name</option>
-             }
+            @foreach (var category in Model.AvailableCategories)
+            {
+                <option value="@category.ID">@category.Name</option>
+            }
         </select>
     </div>
     <div class="form-group">
         <label>Name</label>
-        <input class="form-control" name="Name" id="name" />
+        <input class="form-control" name="Name" />
     </div>
-
     <div class="form-group">
         <label>Description</label>
-        <input class="form-control" name="Description" id="desc"/>
+        <input class="form-control" name="Description" />
     </div>
-
     <div class="form-group">
         <label>Price</label>
-        <input class="form-control" name="Price" id="price"/>
+        <input class="form-control" name="Price" />
     </div>
-  
-    <button id="savebtn" type="button" class="btn btn-primary">Save</button>
+    <button id="saveBtn" type="button" class="btn btn-primary">Save</button>
 </form>
 
-
 <script>
-    $("#savebtn").click(function () {
-        
-
+    $("#saveBtn").click(function () {
         $.ajax({
             type: 'POST',
             url: '/Product/Create',
-            data: 
-                @*Name: $("#name").val(),
-                Description: $("#desc").val(),
-                Price: $("#price").val(),
-                CategoryID: $("#categoryID").val(),*@
-                $("#createProduct").serialize()
+            data: $("#createProduct").serialize()
         })
             .done(function (response) {
-                $("#tableContainer").html(response);
+                $("#tableContiner").html(response);
                 $("#actionContainer").html("");
+
             })
             .fail(function (XMLHttpRequest, textStatus, errorThrown) {
                 alert("FAIL");
             });
     });
 </script>
-

@@ -1,35 +1,53 @@
 ﻿
 @{
     ViewBag.Title = "Create";
+
+    var imageURL = "/Content/images/system/placeholder-image.png";
 }
 
-<h2>Create</h2>
-<form method="post">
-    <label>Name:</label>
-    <input type="text" name="Name" value="" />
-    <br />
-    <label>Description:</label>
-    <input type="text" name="Description" value="" />
-    <br />
-    <label>Image:</label>
-    <input type="hidden" name="ImageURL" id="ImageURL" />
-    <input type="file" name="Image" id="ImageUpload" accept=".png, .jpg" />
-    <br />
-    <img id="categoryImage" />
-    <br />
+<h2>Create Category</h2>
+<form id="createCategory">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label>Name</label>
+                <input class="form-control" name="Name" />
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <input class="form-control" name="Description" />
+            </div>
+            <div class="form-group">
+                <label>Image</label>
+                <input type="hidden" id="ImageURL" name="ImageURL" />
+                <input class="form-control" id="imageUpload" name="Image" type="file" accept=".png, .jpg" />
+            </div>
+            <div class="form-group">
+                <label>Is Featured?</label>
+                <div class="input-group">
+                    <div class="radio form-control">
+                        <label><input name="isFeatured" type="radio" value="True" /> True</label>
+                    </div>
+                    <div class="radio form-control">
+                        <label><input name="isFeatured" type="radio" value="False" /> False</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="thumb">
+                <img class="img-thumbnail img-fluid" id="categoryImage" src="@imageURL" />
+            </div>
+        </div>
+    </div>
 
-    <label>Is Featured?</label>
-    <input name="isFeatured" type="radio" />True
-    <input name="isFeatured" type="radio" />False
-    <br />
-    <button type="submit">Submit</button>
-
+    <button id="saveBtn" type="button" class="btn btn-primary">Save</button>
 </form>
 
-<script type="~/Content/text/javascript" src="~/Content/js/jquery.min.js"></script>
+
 
 <script>
-    $("#ImageUpload").change(function () {
+    $("#imageUpload").change(function () {
         var element = this;
 
         var formData = new FormData();
@@ -40,6 +58,7 @@
             var file = element.files[i];
             formData.append("Photo", file);
         }
+
         $.ajax({
             type: 'POST',
             url: '/Shared/UploadImage',
@@ -50,13 +69,27 @@
         })
             .done(function (response) {
                 console.log(response);
-                console.log(response.Success);
-                console.log(response.ImageURL);
-                if (response.Success) {
-                    $("#categoryImage").attr("src", response.ImageURL);
-                    $("#ImageURL").val(response.ImageURL);
 
+                if (response.Success) {
+                    $("#ImageURL").val(response.ImageURL);
+                    $("#categoryImage").attr("src", response.ImageURL);
                 }
+            })
+            .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("FAIL");
+            });
+    });
+
+    $("#saveBtn").click(function () {
+        $.ajax({
+            type: 'POST',
+            url: '/Category/Create',
+            data: $("#createCategory").serialize()
+        })
+            .done(function (response) {
+                $("#tableContiner").html(response);
+                $("#actionContainer").html("");
+
             })
             .fail(function (XMLHttpRequest, textStatus, errorThrown) {
                 alert("FAIL");

@@ -7003,6 +7003,11 @@ abbr.required {
   .pb-xsm-140 {
     padding-bottom: 140px;
   }
+    
+}
+.wrap-td {
+    width: 1px;
+    white-space: nowrap;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ClothBazar.Database;
 using ClothBazar.Entities;
+using System.Data.Entity;
 
 namespace ClothBazar.Services
 {
@@ -21,7 +22,7 @@ namespace ClothBazar.Services
         {
             using (var context = new CBContext())
             {
-                return context.Categories.ToList();
+                return context.Categories.Include(x => x.Products).ToList();
             }
         }
         public List<Category> GetFeaturedCategories()
@@ -49,12 +50,12 @@ namespace ClothBazar.Services
             }
         }
 
-        public void DeleteCategory(Category category)
+        public void DeleteCategory(int ID)
         {
             using (var context = new CBContext())
             {
                 /*   context.Entry(category).State = System.Data.Entity.EntityState.Deleted;*/
-                var cc=context.Categories.Find(category.ID);
+                var cc=context.Categories.Find(ID);
                 context.Categories.Remove(cc);
                 context.SaveChanges();
             }

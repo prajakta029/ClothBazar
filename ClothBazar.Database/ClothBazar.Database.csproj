@@ -52,13 +52,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CBContext.cs" />
-    <Compile Include="Migrations\202103021317011_initialized.cs" />
-    <Compile Include="Migrations\202103021317011_initialized.designer.cs">
-      <DependentUpon>202103021317011_initialized.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202103031640027_configurationstable.cs" />
-    <Compile Include="Migrations\202103031640027_configurationstable.designer.cs">
-      <DependentUpon>202103031640027_configurationstable.cs</DependentUpon>
+    <Compile Include="Migrations\202103051209541_configurations.cs" />
+    <Compile Include="Migrations\202103051209541_configurations.designer.cs">
+      <DependentUpon>202103051209541_configurations.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -74,11 +70,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202103021317011_initialized.resx">
-      <DependentUpon>202103021317011_initialized.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103031640027_configurationstable.resx">
-      <DependentUpon>202103031640027_configurationstable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202103051209541_configurations.resx">
+      <DependentUpon>202103051209541_configurations.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

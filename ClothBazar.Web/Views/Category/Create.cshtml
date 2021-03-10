@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Create";
 
     var imageURL = "/Content/images/system/placeholder-image.png";
@@ -49,16 +48,12 @@
 <script>
     $("#imageUpload").change(function () {
         var element = this;
-
         var formData = new FormData();
-
         var totalFiles = element.files.length;
-
         for (var i = 0; i < totalFiles; i++) {
             var file = element.files[i];
             formData.append("Photo", file);
         }
-
         $.ajax({
             type: 'POST',
             url: '/Shared/UploadImage',
@@ -69,7 +64,6 @@
         })
             .done(function (response) {
                 console.log(response);
-
                 if (response.Success) {
                     $("#ImageURL").val(response.ImageURL);
                     $("#categoryImage").attr("src", response.ImageURL);
@@ -79,7 +73,6 @@
                 alert("FAIL");
             });
     });
-
     $("#saveBtn").click(function () {
         $.ajax({
             type: 'POST',
@@ -89,7 +82,6 @@
             .done(function (response) {
                 $("#tableContiner").html(response);
                 $("#actionContainer").html("");
-
             })
             .fail(function (XMLHttpRequest, textStatus, errorThrown) {
                 alert("FAIL");

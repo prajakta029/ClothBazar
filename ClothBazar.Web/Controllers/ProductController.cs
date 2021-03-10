@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,8 +12,7 @@ namespace ClothBazar.Web.Controllers
 {
     public class ProductController : Controller
     {
-        ProductServices productsService = new ProductServices();
-        CategoriesService categoryService = new CategoriesService();
+        //CategoriesService categoryService = new CategoriesService();
         // GET: Product
         public ActionResult Index()
         {
@@ -22,7 +22,7 @@ namespace ClothBazar.Web.Controllers
         {
             ProductSearchViewModel model = new ProductSearchViewModel();
 
-            model.Products = productsService.GetProducts();
+            model.Products = ProductServices.Instance.GetProducts();
 
             if (string.IsNullOrEmpty(search) == false)
             {
@@ -38,7 +38,7 @@ namespace ClothBazar.Web.Controllers
         {
             NewProductViewModel model = new NewProductViewModel();
 
-            model.AvailableCategories = categoryService.GetCategories();
+            model.AvailableCategories = CategoriesService.Instance.GetCategories();
 
             return PartialView(model);
         }
@@ -50,9 +50,11 @@ namespace ClothBazar.Web.Controllers
             newProduct.Name = model.Name;
             newProduct.Description = model.Description;
             newProduct.Price = model.Price;
-            newProduct.Category = categoryService.GetCategory(model.CategoryID);
+            newProduct.ImageURL = model.ImageURL;
+            newProduct.Category = CategoriesService.Instance.GetCategory(model.CategoryID);
+            newProduct.ImageURL = model.ImageURL;
 
-            productsService.SaveProduct(newProduct);
+            ProductServices.Instance.SaveProduct(newProduct);
 
             return RedirectToAction("ProductTable");
         }
@@ -62,28 +64,30 @@ namespace ClothBazar.Web.Controllers
         {
             EditProductViewModel model = new EditProductViewModel();
 
-            var product = productsService.GetProduct(ID);
+            var product = ProductServices.Instance.GetProduct(ID);
 
             model.ID = product.ID;
             model.Name = product.Name;
             model.Description = product.Description;
             model.Price = product.Price;
             model.CategoryID = product.Category != null ? product.Category.ID : 0;
+            model.ImageURL = product.ImageURL;
 
-            model.AvailableCategories = categoryService.GetCategories();
+            model.AvailableCategories = CategoriesService.Instance.GetCategories();
 
             return PartialView(model);
         }
         [HttpPost]
         public ActionResult Edit(EditProductViewModel model)
         {
-            var existingProduct = productsService.GetProduct(model.ID);
+            var existingProduct = ProductServices.Instance.GetProduct(model.ID);
             existingProduct.Name = model.Name;
             existingProduct.Description = model.Description;
             existingProduct.Price = model.Price;
-            existingProduct.Category = categoryService.GetCategory(model.CategoryID);
+            existingProduct.Category = CategoriesService.Instance.GetCategory(model.CategoryID);
+            existingProduct.ImageURL = model.ImageURL;
 
-            productsService.UpdateProduct(existingProduct);
+            ProductServices.Instance.UpdateProduct(existingProduct);
 
             return RedirectToAction("ProductTable");
         }
@@ -91,9 +95,21 @@ namespace ClothBazar.Web.Controllers
         [HttpPost]
         public ActionResult Delete(int ID)
         {
-            productsService.DeleteProduct(ID);
+            ProductServices.Instance.DeleteProduct(ID);
 
             return RedirectToAction("ProductTable");
+        }
+
+        [HttpGet]
+        public ActionResult Details(int ID)
+        {
+            ProductViewModel model = new ProductViewModel();
+
+            model.Product = ProductServices.Instance.GetProduct(ID);
+
+            //if (model.Product == null) return HttpNotFound();
+
+            return View(model);
         }
     }
 }

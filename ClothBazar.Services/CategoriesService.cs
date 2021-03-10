@@ -9,8 +9,24 @@ using System.Data.Entity;
 
 namespace ClothBazar.Services
 {
+    #region Singleton
     public class CategoriesService
     {
+        public static CategoriesService Instance
+        {
+            get
+            {
+                if (instance == null) instance = new CategoriesService();
+                return instance;
+
+            }
+        }
+        private static CategoriesService instance { get; set; }
+        private CategoriesService()
+        {
+        }
+        #endregion
+
         public Category GetCategory(int ID)
         {
             using (var context = new CBContext())
@@ -34,7 +50,7 @@ namespace ClothBazar.Services
         }
         public void SaveCategory(Category category)
         {
-            using (var context=new CBContext())
+            using (var context = new CBContext())
             {
                 context.Categories.Add(category);
                 context.SaveChanges();
@@ -55,7 +71,7 @@ namespace ClothBazar.Services
             using (var context = new CBContext())
             {
                 /*   context.Entry(category).State = System.Data.Entity.EntityState.Deleted;*/
-                var cc=context.Categories.Find(ID);
+                var cc = context.Categories.Find(ID);
                 context.Categories.Remove(cc);
                 context.SaveChanges();
             }

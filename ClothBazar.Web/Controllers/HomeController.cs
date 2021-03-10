@@ -10,11 +10,11 @@ namespace ClothBazar.Web.Controllers
 {
     public class HomeController : Controller
     {
-        CategoriesService categoryService = new CategoriesService();
+        //CategoriesService categoryService = new CategoriesService();
         public ActionResult Index()
         {
             HomeViewModel model = new HomeViewModel();
-            model.FeaturedCategories= categoryService.GetFeaturedCategories();
+            model.FeaturedCategories= CategoriesService.Instance.GetFeaturedCategories();
             return View(model);
         }
 
@@ -30,6 +30,27 @@ namespace ClothBazar.Web.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+        public ActionResult Mens()
+        {
+            var model = new ProductCat();
+            model.Products = ProductServices.Instance.GetMens();
+
+            return View(model);
+        }
+        public ActionResult Womens()
+        {
+            var model = new ProductCat();
+            model.Products = ProductServices.Instance.GetWomens();
+
+            return View(model);
+        }
+        public ActionResult Kids()
+        {
+            var model = new ProductCat();
+            model.Products = ProductServices.Instance.GetKids();
+
+            return View(model);
         }
     }
 }

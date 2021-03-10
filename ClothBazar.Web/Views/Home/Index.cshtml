@@ -1,7 +1,7 @@
 ﻿@model ClothBazar.Web.ViewModels.HomeViewModel
 @{
     ViewBag.Title = "Home Page";
-    //var firstCategory = Model.FeaturedCategories.First(); 
+    //var firstCategory = Model.FeaturedCategories.First();
     var firstCategory = Model.FeaturedCategories[0];
     var secondCategory = Model.FeaturedCategories[1];
     var thirdCategory = Model.FeaturedCategories[2];
@@ -60,28 +60,28 @@
             <div class="col-xs-4 col-xxs-12 mb-30 promo-banner">
                 @if (firstCategory != null)
                 {
-                <a href="#">
-                    <img src="@firstCategory.ImageURL" alt="image">
-                    <div class="overlay"></div>
-                    <div class="promo-inner valign">
-                        <h2>@firstCategory.Name</h2>
-                        <span>Best Selling Deals</span>
-                    </div>
-                </a>
+                    <a href="#">
+                        <img src="@firstCategory.ImageURL" alt="image">
+                        <div class="overlay"></div>
+                        <div class="promo-inner valign">
+                            <h2>@firstCategory.Name</h2>
+                            <span>Best Selling Deals</span>
+                        </div>
+                    </a>
                 }
             </div>
 
             <div class="col-xs-4 col-xxs-12 mb-30 promo-banner">
                 @if (secondCategory != null)
                 {
-                <a href="#">
-                    <img src="@secondCategory.ImageURL" alt="image">
-                    <div class="overlay"></div>
-                    <div class="promo-inner valign">
-                        <h2>@secondCategory.Name</h2>
-                        <span>Hot Trends</span>
-                    </div>
-                </a>
+                    <a href="#">
+                        <img src="@secondCategory.ImageURL" alt="image">
+                        <div class="overlay"></div>
+                        <div class="promo-inner valign">
+                            <h2>@secondCategory.Name</h2>
+                            <span>Hot Trends</span>
+                        </div>
+                    </a>
                 }
             </div>
 
@@ -89,14 +89,14 @@
                 @if (thirdCategory != null)
                 {
 
-                 <a href="#">
-                    <img src="@thirdCategory.ImageURL" alt="image">
-                    <div class="overlay"></div>
-                    <div class="promo-inner valign">
-                    <h2>@thirdCategory.Name</h2>
-                    <span>New Collection</span>
-                    </div>
-                 </a>
+                    <a href="#">
+                        <img src="@thirdCategory.ImageURL" alt="image">
+                        <div class="overlay"></div>
+                        <div class="promo-inner valign">
+                            <h2>@thirdCategory.Name</h2>
+                            <span>New Collection</span>
+                        </div>
+                    </a>
                 }
             </div>
 
@@ -104,7 +104,7 @@
     </div>
 </section> <!-- end promo banners -->
 <!-- Trendy Products -->
-<section class="section-wrap-sm new-arrivals pb-50">
+<!--<section class="section-wrap-sm new-arrivals pb-50">
     <div class="container">
 
         <div class="row heading-row">
@@ -409,9 +409,11 @@
                     </div>
                 </div>
             </div>
-        </div> <!-- end row -->
-    </div>
-</section> <!-- end trendy products -->
+        </div>-->
+ <!-- end row -->
+<!--</div>
+</section>-->
+ <!-- end trendy products -->
 <!-- Testimonials -->
 <section class="section-wrap relative testimonials bg-parallax overlay" style="background-image:url(/Content/images/testimonials/testimonial_bg.jpg);">
     <div class="container relative">
@@ -448,8 +450,13 @@
     </div>
 
 </section> <!-- end testimonials -->
+
+@{
+    Html.RenderAction("Products", "Widgets", new { isLatestProducts = true });
+}
+
 <!-- Product Widgets List -->
-<section class="section-wrap products-list">
+<!--<section class="section-wrap products-list">
     <div class="container">
         <div class="row">
 
@@ -493,9 +500,9 @@
                         </span>
                     </li>
                 </ul>
-            </div> <!-- end special offer -->
+            </div>--> <!-- end special offer -->
 
-            <div class="col-md-3 col-sm-6 col-xs-12 mb-40 products-widget">
+            <!--<div class="col-md-3 col-sm-6 col-xs-12 mb-40 products-widget">
                 <h3 class="widget-title bottom-line full-grey">Bestsellers</h3>
                 <ul class="product-list-widget">
                     <li class="clearfix">
@@ -532,9 +539,9 @@
                         </span>
                     </li>
                 </ul>
-            </div> <!-- end bestsellers -->
+            </div>--> <!-- end bestsellers -->
 
-            <div class="col-md-3 col-sm-6 col-xs-12 mb-40 products-widget">
+            <!--<div class="col-md-3 col-sm-6 col-xs-12 mb-40 products-widget">
                 <h3 class="widget-title bottom-line full-grey">Accessories</h3>
                 <ul class="product-list-widget">
                     <li class="clearfix">
@@ -571,9 +578,9 @@
                         </span>
                     </li>
                 </ul>
-            </div> <!-- end top rated -->
+            </div>--> <!-- end top rated -->
 
-            <div class="col-md-3 col-sm-6 col-xs-12 products-widget last">
+            <!--<div class="col-md-3 col-sm-6 col-xs-12 products-widget last">
                 <h3 class="widget-title bottom-line full-grey">top rated</h3>
                 <ul class="product-list-widget">
                     <li class="clearfix">
@@ -610,8 +617,12 @@
                         </span>
                     </li>
                 </ul>
-            </div> <!-- end sales -->
+            </div>--> <!-- end sales -->
 
-        </div> <!-- end row -->
-    </div>
-</section> <!-- end product widgets -->
+        <!--</div>--> <!-- end row -->
+    <!--</div>
+</section>--> <!-- end product widgets -->
+
+@*@{
+    Html.RenderAction("Products", "Widgets", new { isLatestProducts = false });
+}*@

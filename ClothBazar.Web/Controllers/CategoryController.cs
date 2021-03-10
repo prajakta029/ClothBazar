@@ -33,6 +33,7 @@ namespace ClothBazar.Web.Controllers
             return PartialView(model);
         }
         // GET: Category
+        #region Creation
         [HttpGet]
         public ActionResult Create()
         {
@@ -53,7 +54,9 @@ namespace ClothBazar.Web.Controllers
 
             return RedirectToAction("CategoryTable");
         }
+        #endregion
 
+        #region Updation
         [HttpGet]
         public ActionResult Edit(int ID)
         {
@@ -82,6 +85,7 @@ namespace ClothBazar.Web.Controllers
 
             return RedirectToAction("CategoryTable");
         }
+        #endregion
         [HttpPost]
         public ActionResult Delete(int ID)
         {

@@ -7,13 +7,13 @@ namespace ClothBazar.Database.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class initial : IMigrationMetadata
+    public sealed partial class addedBasicValidations : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(initial));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(addedBasicValidations));
         
         string IMigrationMetadata.Id
         {
-            get { return "202103050942273_initial"; }
+            get { return "202103110836187_addedBasicValidations"; }
         }
         
         string IMigrationMetadata.Source

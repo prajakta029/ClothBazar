@@ -8,7 +8,7 @@ using ClothBazar.Entities;
 
 namespace ClothBazar.Database
 {
-    public class CBContext : DbContext
+    public class CBContext : DbContext, IDisposable
     {
         public CBContext() : base("ClothBazar")
         {

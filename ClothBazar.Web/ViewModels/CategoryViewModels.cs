@@ -16,7 +16,7 @@ namespace ClothBazar.Web.ViewModels
     public class NewCategoryViewModel
     {
         [Required]
-        [MinLength(5), MaxLength(50)]
+        [MinLength(3), MaxLength(50)]
         public string Name { get; set; }
 
         [MaxLength(500)]

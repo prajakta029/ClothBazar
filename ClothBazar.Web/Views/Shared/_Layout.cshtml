@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Zenna | Home 1</title>
+    <title>Clothastic</title>
 
     <meta charset="utf-8">
     <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
@@ -71,7 +71,7 @@
                                 <div class="currency-dropdown">
                                     <ul>
                                         <li><a href="#">USD</a></li>
-                                        <li><a href="#">EUR</a></li>
+                                        <li><a href="#">EUR</a></li>qu
                                     </ul>
                                 </div>
                             </li>
@@ -137,23 +137,23 @@
                                     <ul class="nav navbar-nav">
 
                                         <li class="dropdown">
-                                            <a href="#">Home</a>
-                                            <i class="fa fa-angle-down dropdown-trigger"></i>
+                                            <a href="@Url.Action("Index", "Home")">Home</a>
+                                            @*<i class="fa fa-angle-down dropdown-trigger"></i>
                                             <ul class="dropdown-menu">
                                                 <li><a href="index.html">Home</a></li>
                                                 <li><a href="index-2.html">Home 2</a></li>
                                                 <li><a href="index-3.html">Home 3</a></li>
-                                            </ul>
+                                            </ul>*@
                                         </li>
 
                                         <li class="dropdown">
                                             <a href="#">Pages</a>
                                             <i class="fa fa-angle-down dropdown-trigger"></i>
                                             <ul class="dropdown-menu">
-                                                <li><a href="about-us.html">About Us</a></li>
-                                                <li><a href="contact.html">Contact</a></li>
-                                                <li><a href="faq.html">F.A.Q</a></li>
-                                                <li><a href="404.html">404</a></li>
+                                                <li><a href="/Home/About">About Us</a></li>
+                                                <li><a href="/Home/Contact">Contact</a></li>
+                                                @*<li><a href="faq.html">F.A.Q</a></li>
+                                                <li><a href="404.html">404</a></li>*@
                                             </ul>
                                         </li>
 
@@ -342,11 +342,11 @@
                             <div class="col-md-3 col-sm-12 col-xs-12">
                                 <div class="widget footer-about-us">
                                     <img src="~/Content/images/logo_dark.png" alt="" class="logo">
-                                    <p class="mb-30">Zenna Shop is a very slick and clean eCommerce template.</p>
+                                    <p class="mb-30">Clothastic Shop is a very slick and clean eCommerce template.</p>
                                     <div class="footer-socials">
                                         <div class="social-icons nobase">
                                             <a href="#"><i class="fa fa-twitter"></i></a>
-                                            <a href="@ConfigurationsService.Instance.GetConfig("FacebookURL").Value"><i class="fa fa-facebook"></i></a>
+                                            @*<a href="@ConfigurationsService.Instance.GetConfig("FacebookURL").Value"><i class="fa fa-facebook"></i></a>*@
                                             <a href="#"><i class="fa fa-google-plus"></i></a>
                                         </div>
                                     </div>

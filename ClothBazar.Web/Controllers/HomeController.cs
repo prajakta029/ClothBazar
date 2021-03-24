@@ -52,5 +52,6 @@ namespace ClothBazar.Web.Controllers
 
             return View(model);
         }
+
     }
 }

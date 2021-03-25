@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Donors";
+}
+
+<section class="flat-row flat-iconbox">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title-section">
+                    <h2 class="title">
+                        Donor
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <form method="post" action="/Donor/DonorTable">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input class="form-control" id="searchTxt" name="Search" value="" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Action</label>
+                                    <button class="btn btn-primary form-control" type="submit" id="searchBtn">Donate</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

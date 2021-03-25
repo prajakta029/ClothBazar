@@ -52,13 +52,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CBContext.cs" />
-    <Compile Include="Migrations\202103240916510_donor.cs" />
-    <Compile Include="Migrations\202103240916510_donor.Designer.cs">
-      <DependentUpon>202103240916510_donor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202103240942048_newdonor.cs" />
-    <Compile Include="Migrations\202103240942048_newdonor.Designer.cs">
-      <DependentUpon>202103240942048_newdonor.cs</DependentUpon>
+    <Compile Include="Migrations\202103241417418_new.cs" />
+    <Compile Include="Migrations\202103241417418_new.Designer.cs">
+      <DependentUpon>202103241417418_new.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -74,11 +70,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202103240916510_donor.resx">
-      <DependentUpon>202103240916510_donor.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103240942048_newdonor.resx">
-      <DependentUpon>202103240942048_newdonor.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202103241417418_new.resx">
+      <DependentUpon>202103241417418_new.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

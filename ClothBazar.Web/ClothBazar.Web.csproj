@@ -180,6 +180,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
+    <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Controllers\WidgetsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -194,6 +195,7 @@
     <Compile Include="ViewModels\DonorViewModels.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModels.cs" />
+    <Compile Include="ViewModels\ShopViewModels.cs" />
     <Compile Include="ViewModels\WidgetViewModels.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -304,6 +306,7 @@
     <Content Include="Content\images\testimonials\testimonial_bg.jpg" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\gmap3.js" />
+    <Content Include="Content\js\jquery.cookie.js" />
     <Content Include="Content\js\jquery.min.js" />
     <Content Include="Content\js\plugins.js" />
     <Content Include="Content\js\scripts.js" />
@@ -506,6 +509,8 @@
     <Content Include="Views\Home\Kids.cshtml" />
     <Content Include="Views\Donor\Index.cshtml" />
     <Content Include="Views\Donor\DonorTable.cshtml" />
+    <Content Include="Views\Shop\Checkout.cshtml" />
+    <Content Include="Views\Shop\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

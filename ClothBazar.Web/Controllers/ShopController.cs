@@ -19,12 +19,27 @@ namespace ClothBazar.Web.Controllers
                 model.CartProductIDs = CartProductCookies.Value.Split('-').Select(x => int.Parse(x)).ToList();
                 model.CartProducts = ProductServices.Instance.GetProducts(model.CartProductIDs);
             }
-            return PartialView(model);
+            return View(model);
         }
         // GET: Shop
-        public ActionResult Index()
+        public ActionResult Index(string searchTerm, int? minimumPrice, int? maximumPrice, int? categoryID, int? sortBy, int? pageNo)
         {
-            return View();
+            ShopViewModel model = new ShopViewModel();
+
+            model.SearchTerm = searchTerm;
+            //model.FeaturedCategories = CategoriesService.Instance.GetFeaturedCategories();
+            //model.MaximumPrice = ProductsService.Instance.GetMaximumPrice();
+
+            //pageNo = pageNo.HasValue ? pageNo.Value > 0 ? pageNo.Value : 1 : 1;
+            //model.SortBy = sortBy;
+            model.CategoryID = categoryID;
+
+            //int totalCount = ProductsService.Instance.SearchProductsCount(searchTerm, minimumPrice, maximumPrice, categoryID, sortBy);
+            model.Products = ProductServices.Instance.SearchProducts(searchTerm, minimumPrice, maximumPrice, categoryID);
+
+            //model.Pager = new Pager(totalCount, pageNo, pageSize);
+
+            return View(model);
         }
     }
 }

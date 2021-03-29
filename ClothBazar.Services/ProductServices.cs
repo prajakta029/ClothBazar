@@ -126,5 +126,51 @@ namespace ClothBazar.Services
                 return context.Products.Where(x => x.Category.ID == categoryID).OrderByDescending(x => x.ID).Take(pageSize).Include(x => x.Category).ToList();
             }
         }
+
+        public List<Product> SearchProducts(string searchTerm, int? minimumPrice, int? maximumPrice, int? categoryID)
+        {
+            using (var context = new CBContext())
+            {
+                var products = context.Products.ToList();
+
+                if (categoryID.HasValue)
+                {
+                    products = products.Where(x => x.Category.ID == categoryID.Value).ToList();
+                }
+
+                if (!string.IsNullOrEmpty(searchTerm))
+                {
+                    products = products.Where(x => x.Name.ToLower().Contains(searchTerm.ToLower())).ToList();
+                }
+
+                //if (minimumPrice.HasValue)
+                //{
+                //    products = products.Where(x => x.Price >= minimumPrice.Value).ToList();
+                //}
+
+                //if (maximumPrice.HasValue)
+                //{
+                //    products = products.Where(x => x.Price <= maximumPrice.Value).ToList();
+                //}
+
+                //if (sortBy.HasValue)
+                //{
+                //    switch (sortBy.Value)
+                //    {
+                //        case 2:
+                //            products = products.OrderByDescending(x => x.ID).ToList();
+                //            break;
+                //        case 3:
+                //            products = products.OrderBy(x => x.Price).ToList();
+                //            break;
+                //        default:
+                //            products = products.OrderByDescending(x => x.Price).ToList();
+                //            break;
+                //    }
+                //}
+
+                return products.ToList();
+            }
+        }
     }
 }

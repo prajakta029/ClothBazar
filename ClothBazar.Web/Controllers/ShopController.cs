@@ -1,5 +1,7 @@
 ﻿using ClothBazar.Services;
 using ClothBazar.Web.ViewModels;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +12,43 @@ namespace ClothBazar.Web.Controllers
 {
     public class ShopController : Controller
     {
-        CheckoutViewModel model = new CheckoutViewModel();
+        private ApplicationSignInManager _signInManager;
+        private ApplicationUserManager _userManager;
+
+        public ApplicationSignInManager SignInManager
+        {
+            get
+            {
+                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+            }
+            private set
+            {
+                _signInManager = value;
+            }
+        }
+
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
+
+        [Authorize]
         public ActionResult Checkout()
         {
+            CheckoutViewModel model = new CheckoutViewModel();
             var CartProductCookies = Request.Cookies["AddtoCart"];
             if (CartProductCookies != null)
             {
                 model.CartProductIDs = CartProductCookies.Value.Split('-').Select(x => int.Parse(x)).ToList();
                 model.CartProducts = ProductServices.Instance.GetProducts(model.CartProductIDs);
+                model.User = UserManager.FindById(User.Identity.GetUserId());
             }
             return View(model);
         }

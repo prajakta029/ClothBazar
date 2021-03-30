@@ -393,18 +393,18 @@
                                 <div class="row">
                                     <div class="col-md-12 mb-3">
                                         <label for="firstName">Name</label>
-                                        <input type="text" class="form-control" id="Name" placeholder="" value="" required="">
+                                        <input type="text" class="form-control" id="Name" placeholder="" value="@Model.User.Name" required="">
                                     </div>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="email">Email <span class="text-muted">(Optional)</span></label>
-                                    <input type="email" class="form-control" id="Email" placeholder="you@example.com" value="">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" id="Email" placeholder="you@example.com" value="@Model.User.Email">
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="address">Address</label>
-                                    <input type="text" class="form-control" id="address" placeholder="1234 Main St" required="" value="">
+                                    <input type="text" class="form-control" id="address" placeholder="1234 Main St" required="" value="@Model.User.Address">
                                 </div>
 
                                 <hr class="mb-4">

@@ -65,7 +65,7 @@
             <div class="top-bar hidden-xs">
                 <div class="container">
                     <div class="top-bar-links flex-parent">
-                        <ul class="top-bar-currency-language">
+                        <!--<ul class="top-bar-currency-language">
                             <li>
                                 Currency: <a href="#">USD<i class="fa fa-angle-down"></i></a>
                                 <div class="currency-dropdown">
@@ -74,8 +74,8 @@
                                         <li><a href="#">EUR</a></li>qu
                                     </ul>
                                 </div>
-                            </li>
-                            <li class="language">
+                            </li>-->
+                            @*<li class="language">
                                 Language: <a href="#">ENG<i class="fa fa-angle-down"></i></a>
                                 <div class="language-dropdown">
                                     <ul>
@@ -85,14 +85,15 @@
                                         <li><a href="#">Chinese</a></li>
                                     </ul>
                                 </div>
-                            </li>
-                        </ul>
+                            </li>*@
+                        <!--</ul>-->
 
                         <ul class="top-bar-acc">
                             <li class="top-bar-link"><a href="#">My Wishlist</a></li>
                             <li class="top-bar-link"><a href="#">Newsletter</a></li>
                             <li class="top-bar-link"><a href="#">Login</a></li>
                         </ul>
+                        @Html.Partial("_LoginPartial")
 
                     </div>
                 </div>

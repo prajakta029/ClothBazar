@@ -98,14 +98,14 @@
                                         </div>
                                     </div>*@
 
-                                <div class="col-md-7">
-                                    <div class="actions">
-                                        <input type="submit" name="update_cart" value="Update Cart" class="btn btn-lg btn-stroke">
-                                        <div class="wc-proceed-to-checkout">
-                                            <a href="checkout.html" class="btn btn-lg btn-dark"><span>proceed to checkout</span></a>
+                                @*<div class="col-md-7">
+                                        <div class="actions">
+                                            <input type="submit" name="update_cart" value="Update Cart" class="btn btn-lg btn-stroke">
+                                            <div class="wc-proceed-to-checkout">
+                                                <a href="checkout.html" class="btn btn-lg btn-dark"><span>proceed to checkout</span></a>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
+                                    </div>*@
                             </div>
 
                         </div> <!-- end col -->
@@ -385,7 +385,8 @@
                             <p>
                                 <input type="submit" name="calc_shipping" value="Update Totals" class="btn btn-lg btn-stroke mt-10 mb-mdm-40">
                             </p>
-                        </div>--> <!-- end col shipping calculator -->
+                        </div>-->
+                        <!-- end col shipping calculator -->
 
                         <div class="col-md-6 order-md-1">
                             <h4 class="mb-3">Billing address</h4>
@@ -448,6 +449,34 @@
                 </div> <!-- end container -->
             </section> <!-- end cart -->
         </div>
+
+<script>
+    $("#placeOrderBtn").click(function () {
+        $.ajax({
+            url: '@Url.Action("PlaceOrder", "Shop")',
+            data: {
+				productIDs: '@string.Join("-", Model.CartProductIDs)'
+			}
+		})
+        .done(function (response) {
+        	if(response.Success)
+        	{
+                $.cookie('AddtoCart', '', { path: '/' });
+        		updateCartProducts();
+                window.alert("Your order has been placed");
+        			window.location = '@Url.Action("Index", "Shop")';
+        	}
+            else
+            {
+                window.alert("Unable to place order");
+        	}
+        })
+        .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+        	alert("FAIL");
+        });
+    });
+</script>
+
     }
     else
     {
@@ -456,3 +485,4 @@
         </div>
     }
 }
+

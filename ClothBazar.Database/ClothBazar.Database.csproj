@@ -53,9 +53,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CBContext.cs" />
-    <Compile Include="Migrations\202103241417418_new.cs" />
-    <Compile Include="Migrations\202103241417418_new.Designer.cs">
-      <DependentUpon>202103241417418_new.cs</DependentUpon>
+    <Compile Include="Migrations\202103301749580_new.cs" />
+    <Compile Include="Migrations\202103301749580_new.designer.cs">
+      <DependentUpon>202103301749580_new.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103301801564_AddedOrderAndOrderItemTables.cs" />
+    <Compile Include="Migrations\202103301801564_AddedOrderAndOrderItemTables.designer.cs">
+      <DependentUpon>202103301801564_AddedOrderAndOrderItemTables.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -71,8 +75,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202103241417418_new.resx">
-      <DependentUpon>202103241417418_new.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202103301749580_new.resx">
+      <DependentUpon>202103301749580_new.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103301801564_AddedOrderAndOrderItemTables.resx">
+      <DependentUpon>202103301801564_AddedOrderAndOrderItemTables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

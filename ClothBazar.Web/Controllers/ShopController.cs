@@ -1,4 +1,5 @@
-﻿using ClothBazar.Services;
+﻿using ClothBazar.Entities;
+using ClothBazar.Services;
 using ClothBazar.Web.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -71,6 +72,38 @@ namespace ClothBazar.Web.Controllers
             //model.Pager = new Pager(totalCount, pageNo, pageSize);
 
             return View(model);
+        }
+
+        public JsonResult PlaceOrder(string productIDs)
+        {
+            JsonResult result = new JsonResult();
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+
+            if (!string.IsNullOrEmpty(productIDs))
+            {
+                var productQuantities = productIDs.Split('-').Select(x => int.Parse(x)).ToList();
+
+                var boughtProducts = ProductServices.Instance.GetProducts(productQuantities.Distinct().ToList());
+
+                Order newOrder = new Order();
+                newOrder.UserID = User.Identity.GetUserId();
+                newOrder.OrderedAt = DateTime.Now;
+                newOrder.Status = "Pending";
+                newOrder.TotalAmount = boughtProducts.Sum(x => x.Price * productQuantities.Where(productID => productID == x.ID).Count());
+
+                newOrder.OrderItems = new List<OrderItem>();
+                newOrder.OrderItems.AddRange(boughtProducts.Select(x => new OrderItem() { ProductID = x.ID, Quantity = productQuantities.Where(productID => productID == x.ID).Count() }));
+
+                var rowsEffected = ShopService.Instance.SaveOrder(newOrder);
+
+                result.Data = new { Success = true, Rows = rowsEffected };
+            }
+            else
+            {
+                result.Data = new { Success = false };
+            }
+
+            return result;
         }
     }
 }

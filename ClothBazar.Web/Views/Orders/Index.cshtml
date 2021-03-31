@@ -1,0 +1,114 @@
+﻿@model OrderViewModels
+@{
+    ViewBag.Title = "Orders";
+}
+
+<section class="flat-row flat-iconbox">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title-section">
+                    <h2 class="title">
+                        Orders
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+        <div id="DetailsTableContiner">
+            <div>
+                <form method="post">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label>Search</label>
+                                <input class="form-control" id="searchTxt" name="UserID" value="@Model.UserID" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Action</label>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <button class="btn btn-primary form-control" type="button" id="searchBtn">Search</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <td>UserID</td>
+                            <td>Total Price</td>
+                            <td>Status</td>
+                            <td>Actions</td>
+                            @*<td class="wrap-td">Actions</td>*@
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Orders != null && Model.Orders.Count > 0)
+                        {
+
+                            foreach (var order in Model.Orders)
+                            {
+                                <tr>
+                                    <td>@order.UserID</td>
+                                    <td>
+                                        @order.TotalAmount
+                                    </td>
+                                    <td>@order.Status</td>
+                                    <td class="wrap-td">
+                                        <button class="detailBtn" data-id="@order.ID">Details</button>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td class="text-danger" colspan="4">No Orders found.</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <div id="DetailsActionContainer">
+
+        </div>
+
+        <hr />
+    </div>
+</section>
+
+<script>
+    $(".detailBtn").click(function () {
+        $.ajax({
+            url: '/Orders/Details',
+            data: {
+                ID: $(this).attr('data-id')
+            }
+        })
+            .done(function (response) {
+                $("#DetailsActionContainer").html(response);
+
+                focusAction();
+            })
+            .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("FAIL");
+            });
+    });
+
+    function focusAction() {
+        $('html, body').animate({
+            scrollTop: $("#DetailsActionContainer").offset().top - 100
+        }, 1000);
+    }
+</script>
+

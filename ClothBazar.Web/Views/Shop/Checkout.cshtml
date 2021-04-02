@@ -1,4 +1,6 @@
-﻿@model ClothBazar.Web.ViewModels.CheckoutViewModel
+﻿@using ClothBazar.Web.Models;
+
+@model ClothBazar.Web.ViewModels.CheckoutViewModel
 @{
     ViewBag.Title = "Checkout";
 }
@@ -394,18 +396,18 @@
                                 <div class="row">
                                     <div class="col-md-12 mb-3">
                                         <label for="firstName">Name</label>
-                                        <input type="text" class="form-control" id="Name" placeholder="" value="@Model.User.Name" required="">
+                                        <input type="text" class="form-control" id="Name" placeholder="" value="@Model.User.Name" required="" readonly>
                                     </div>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="email">Email</label>
-                                    <input type="email" class="form-control" id="Email" placeholder="you@example.com" value="@Model.User.Email">
+                                    <input type="email" class="form-control" id="Email" placeholder="you@example.com" value="@Model.User.Email" readonly>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="address">Address</label>
-                                    <input type="text" class="form-control" id="address" placeholder="1234 Main St" required="" value="@Model.User.Address">
+                                    <input type="text" class="form-control" id="address" placeholder="1234 Main St" required="" value="@Model.User.Address" readonly>
                                 </div>
 
                                 <hr class="mb-4">
@@ -450,8 +452,13 @@
             </section> <!-- end cart -->
         </div>
 
-<script>
+        <script>
+@{
+    RequestData requestData = new RequestData();
+}
+
     $("#placeOrderBtn").click(function () {
+
         $.ajax({
             url: '@Url.Action("PlaceOrder", "Shop")',
             data: {
@@ -459,12 +466,28 @@
 			}
 		})
         .done(function (response) {
-        	if(response.Success)
-        	{
-                $.cookie('AddtoCart', '', { path: '/' });
+            if (response.Success) {
+                $.ajax({
+                    type: "post",
+                    url: '@Url.Action("CreatePayment", "Home")',
+                    data: {
+                        amount: "@Model.CartProducts.Sum(x => x.Price * Model.CartProductIDs.Where(productID => productID == x.ID).Count())",
+                        email: "@Model.User.Email",
+                        orderid: "@Model.LatestOrder.ID",
+                        mobileNumber: "@Model.User.Mobile"
+                        }
+                })
+                    .done(function (response) {
+                        alert(response);
+                    })
+                    .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("FAIL");
+                    });
+
+                @*$.cookie('AddtoCart', '', { path: '/' });
         		updateCartProducts();
                 window.alert("Your order has been placed");
-        			window.location = '@Url.Action("Index", "Shop")';
+        			window.location = '@Url.Action("Index", "Shop")';*@
         	}
             else
             {
@@ -475,7 +498,7 @@
         	alert("FAIL");
         });
     });
-</script>
+        </script>
 
     }
     else

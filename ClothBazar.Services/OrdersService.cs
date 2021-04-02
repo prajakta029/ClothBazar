@@ -90,5 +90,13 @@ namespace ClothBazar.Services
                 return context.SaveChanges() > 0;
             }
         }
+
+        public Order GetLatestOrder()
+        {
+            using (var context = new CBContext())
+            {
+                return context.Orders.OrderByDescending(x => x.ID).FirstOrDefault();
+            }
+        }
     }
 }

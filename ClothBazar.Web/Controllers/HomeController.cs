@@ -53,5 +53,65 @@ namespace ClothBazar.Web.Controllers
             return View(model);
         }
 
+        public ActionResult Payment()
+        {
+            ViewBag.Message = "Your payment page.";
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreatePayment(Models.RequestData data)
+        {
+            String merchantKey = Key.merchantKey;
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("MID", Key.merchantId);
+            parameters.Add("CHANNEL_ID", "WEB");
+            parameters.Add("INDUSTRY_TYPE_ID", "Retail");
+            parameters.Add("WEBSITE", "WEBSTAGING");
+            parameters.Add("EMAIL", data.email);
+            parameters.Add("MOBILE_NO", data.mobileNumber);
+            parameters.Add("CUST_ID", "1");
+            parameters.Add("ORDER_ID", data.orderid);
+            parameters.Add("TXN_AMOUNT", data.amount);
+            parameters.Add("CALLBACK_URL", "https://localhost:44325/Home/paytmResponse.net"); //This parameter is not mandatory. Use this to pass the callback url dynamically.
+
+            string checksum = paytm.CheckSum.generateCheckSum(merchantKey, parameters);
+            string paytmURL = "https://securegw-stage.paytm.in/theia/processTransaction?orderid=" + parameters.FirstOrDefault(x=>x.Key == "ORDER_ID").Value;
+
+            string outputHTML = "<html>";
+            outputHTML += "<head>";
+            outputHTML += "<title>Merchant Check Out Page</title>";
+            outputHTML += "</head>";
+            outputHTML += "<body>";
+            outputHTML += "<center><h1>Please do not refresh this page...</h1></center>";
+            outputHTML += "<form method='post' action='" + paytmURL + "' name='f1'>";
+            outputHTML += "<table border='1'>";
+            outputHTML += "<tbody>";
+            foreach (string key in parameters.Keys)
+            {
+                outputHTML += "<input type='hidden' name='" + key + "' value='" + parameters[key] + "'>";
+            }
+            outputHTML += "<input type='hidden' name='CHECKSUMHASH' value='" + checksum + "'>";
+            outputHTML += "</tbody>";
+            outputHTML += "</table>";
+            outputHTML += "<script type='text/javascript'>";
+            outputHTML += "document.f1.submit();";
+            outputHTML += "</script>";
+            outputHTML += "</form>";
+            outputHTML += "</body>";
+            outputHTML += "</html>";
+
+            ViewBag.htmlData = outputHTML;
+
+            return View("PaymentPage");
+        }
+
+        [HttpPost]
+        public ActionResult paytmResponse(Models.PaytmResponse data)
+        {
+            return View("paytmResponse", data);
+        }
+
     }
 }

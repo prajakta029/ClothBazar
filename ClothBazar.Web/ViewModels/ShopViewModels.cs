@@ -12,6 +12,7 @@ namespace ClothBazar.Web.ViewModels
         public List<Product> CartProducts { get; set; }
         public List<int> CartProductIDs { get; set; }
         public ApplicationUser User { get; set; }
+        public Order LatestOrder { get; set; }
     }
 
     public class ShopViewModel

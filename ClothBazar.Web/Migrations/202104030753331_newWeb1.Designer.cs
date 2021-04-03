@@ -7,13 +7,13 @@ namespace ClothBazar.Web.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class newWeb : IMigrationMetadata
+    public sealed partial class newWeb1 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(newWeb));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(newWeb1));
         
         string IMigrationMetadata.Id
         {
-            get { return "202104022121127_newWeb"; }
+            get { return "202104030753331_newWeb1"; }
         }
         
         string IMigrationMetadata.Source

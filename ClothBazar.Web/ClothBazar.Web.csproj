@@ -193,9 +193,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Key.cs" />
-    <Compile Include="Migrations\202104030753331_newWeb1.cs" />
-    <Compile Include="Migrations\202104030753331_newWeb1.designer.cs">
-      <DependentUpon>202104030753331_newWeb1.cs</DependentUpon>
+    <Compile Include="Migrations\202104030936089_newWeb2.cs" />
+    <Compile Include="Migrations\202104030936089_newWeb2.designer.cs">
+      <DependentUpon>202104030936089_newWeb2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -555,8 +555,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202104030753331_newWeb1.resx">
-      <DependentUpon>202104030753331_newWeb1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202104030936089_newWeb2.resx">
+      <DependentUpon>202104030936089_newWeb2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

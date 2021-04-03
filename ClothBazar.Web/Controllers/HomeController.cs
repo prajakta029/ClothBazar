@@ -77,7 +77,7 @@ namespace ClothBazar.Web.Controllers
             parameters.Add("CUST_ID", "1");
             parameters.Add("ORDER_ID", LatestOrder.ID.ToString());
             parameters.Add("TXN_AMOUNT", data.amount);
-            parameters.Add("CALLBACK_URL", "https://localhost:44325/Home/PaytmResponse.net"); //This parameter is not mandatory. Use this to pass the callback url dynamically.
+            parameters.Add("CALLBACK_URL", "https://localhost:44325/Home/paytmResponse"); //This parameter is not mandatory. Use this to pass the callback url dynamically.
 
             string checksum = paytm.CheckSum.generateCheckSum(merchantKey, parameters);
             string paytmURL = "https://securegw-stage.paytm.in/theia/processTransaction?orderid=" + LatestOrder.ID.ToString();

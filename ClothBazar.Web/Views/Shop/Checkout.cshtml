@@ -5,6 +5,7 @@
     ViewBag.Title = "Checkout";
 }
 
+<div id="Checkout">
 @if (Model != null)
 {
     if (Model.CartProducts != null && Model.CartProducts.Count != 0)
@@ -482,12 +483,12 @@
                         mobileNumber: "@Model.User.Mobile"
                         }
                 })
-                    //.done(function (response) {
-                    //    alert(response);
-                    //})
-                    //.fail(function (XMLHttpRequest, textStatus, errorThrown) {
-                    //    alert("FAIL");
-                    //});
+                    .done(function (response) {
+                        $("#Checkout").html(response);
+                    })
+                    .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("FAIL");
+                    });
 
                 @*$.cookie('AddtoCart', '', { path: '/' });
         		updateCartProducts();
@@ -513,4 +514,5 @@
         </div>
     }
 }
+</div>
 

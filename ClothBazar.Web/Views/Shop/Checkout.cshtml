@@ -1,6 +1,4 @@
-﻿@using ClothBazar.Web.Models;
-
-@model ClothBazar.Web.ViewModels.CheckoutViewModel
+﻿@model ClothBazar.Web.ViewModels.CheckoutViewModel
 @{
     ViewBag.Title = "Checkout";
 }
@@ -417,7 +415,7 @@
                                 </div>
 
                                 <hr class="mb-4">
-                                <button id="placeOrderBtn" class="btn btn-primary btn-lg btn-block" type="button">Place Order!</button>
+                                <button id="placeOrderBtn" class="btn btn-primary btn-lg btn-block" type="button">Proceed To Payment</button>
                             </form>
                         </div>
 
@@ -459,9 +457,9 @@
         </div>
 
         <script>
-@{
+@*@{
     RequestData requestData = new RequestData();
-}
+}*@
 
     $("#placeOrderBtn").click(function () {
 
@@ -489,11 +487,6 @@
                     .fail(function (XMLHttpRequest, textStatus, errorThrown) {
                         alert("FAIL");
                     });
-
-                @*$.cookie('AddtoCart', '', { path: '/' });
-        		updateCartProducts();
-                window.alert("Your order has been placed");
-        			window.location = '@Url.Action("Index", "Shop")';*@
         	}
             else
             {

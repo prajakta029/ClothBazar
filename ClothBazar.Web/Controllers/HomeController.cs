@@ -66,15 +66,15 @@ namespace ClothBazar.Web.Controllers
         {
             Order LatestOrder = OrdersService.Instance.GetLatestOrder();
 
-            String merchantKey = "I028xgJGEWcXWdHB";
+            String merchantKey = Key.merchantKey;
             Dictionary<string, string> parameters = new Dictionary<string, string>();
-            parameters.Add("MID", "McqBpG10808340449815");
+            parameters.Add("MID", Key.merchantId);
             parameters.Add("CHANNEL_ID", "WEB");
             parameters.Add("INDUSTRY_TYPE_ID", "Retail");
             parameters.Add("WEBSITE", "WEBSTAGING");
             parameters.Add("EMAIL", data.email);
-            parameters.Add("MOBILE_NO", "1000000001");
-            parameters.Add("CUST_ID", "1");
+            parameters.Add("MOBILE_NO", data.mobileNumber);
+            parameters.Add("CUST_ID", LatestOrder.UserID);
             parameters.Add("ORDER_ID", LatestOrder.ID.ToString());
             parameters.Add("TXN_AMOUNT", data.amount);
             parameters.Add("CALLBACK_URL", "https://localhost:44325/Home/paytmResponse"); //This parameter is not mandatory. Use this to pass the callback url dynamically.

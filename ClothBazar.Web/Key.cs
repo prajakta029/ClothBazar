@@ -7,7 +7,7 @@ namespace ClothBazar.Web
 {
     public class Key
     {
-        public static string merchantKey = "USmiLTndptTPCGy_";
-        public static string merchantId = "XQVjFC01372500495040";
+        public static string merchantKey = "I028xgJGEWcXWdHB";
+        public static string merchantId = "McqBpG10808340449815";
     }
 }

@@ -50,7 +50,7 @@ namespace ClothBazar.Web.Controllers
                 model.CartProductIDs = CartProductCookies.Value.Split('-').Select(x => int.Parse(x)).ToList();
                 model.CartProducts = ProductServices.Instance.GetProducts(model.CartProductIDs);
                 model.User = UserManager.FindById(User.Identity.GetUserId());
-                model.LatestOrder = OrdersService.Instance.GetLatestOrder();
+                //model.LatestOrder = OrdersService.Instance.GetLatestOrder();
             }
             return View(model);
         }

@@ -410,6 +410,11 @@
                                     <input type="text" class="form-control" id="address" placeholder="1234 Main St" required="" value="@Model.User.Address" readonly>
                                 </div>
 
+                                <div class="mb-3">
+                                    <label for="Mobile">Mobile</label>
+                                    <input type="text" class="form-control" id="address" placeholder="1234 Main St" required="" value="@Model.User.Mobile" readonly>
+                                </div>
+
                                 <hr class="mb-4">
                                 <button id="placeOrderBtn" class="btn btn-primary btn-lg btn-block" type="button">Place Order!</button>
                             </form>
@@ -473,7 +478,7 @@
                     data: {
                         amount: "@Model.CartProducts.Sum(x => x.Price * Model.CartProductIDs.Where(productID => productID == x.ID).Count())",
                         email: "@Model.User.Email",
-                        orderid: "@Model.LatestOrder.ID",
+                        @*orderid: "@Model.LatestOrder.ID",*@
                         mobileNumber: "@Model.User.Mobile"
                         }
                 })

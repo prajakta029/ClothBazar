@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class AddedMobileToUser : DbMigration
+    public partial class newWeb : DbMigration
     {
         public override void Up()
         {

@@ -7,13 +7,13 @@ namespace ClothBazar.Web.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class AddedMobileToUser : IMigrationMetadata
+    public sealed partial class newWeb : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedMobileToUser));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(newWeb));
         
         string IMigrationMetadata.Id
         {
-            get { return "202104021119042_AddedMobileToUser"; }
+            get { return "202104022121127_newWeb"; }
         }
         
         string IMigrationMetadata.Source

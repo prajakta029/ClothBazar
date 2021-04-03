@@ -9,7 +9,7 @@ namespace ClothBazar.Web.Models
     {
         public string mobileNumber { get; set; }
         public string email { get; set; }
-        public string orderid { get; set; }
+        //public string orderid { get; set; }
         public string amount { get; set; }
     }
 }

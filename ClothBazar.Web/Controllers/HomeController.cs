@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using ClothBazar.Services;
 using ClothBazar.Web.ViewModels;
+using ClothBazar.Entities;
 
 namespace ClothBazar.Web.Controllers
 {
@@ -63,21 +64,23 @@ namespace ClothBazar.Web.Controllers
         [HttpPost]
         public ActionResult CreatePayment(Models.RequestData data)
         {
-            String merchantKey = Key.merchantKey;
+            Order LatestOrder = OrdersService.Instance.GetLatestOrder();
+
+            String merchantKey = "I028xgJGEWcXWdHB";
             Dictionary<string, string> parameters = new Dictionary<string, string>();
-            parameters.Add("MID", Key.merchantId);
+            parameters.Add("MID", "McqBpG10808340449815");
             parameters.Add("CHANNEL_ID", "WEB");
             parameters.Add("INDUSTRY_TYPE_ID", "Retail");
             parameters.Add("WEBSITE", "WEBSTAGING");
             parameters.Add("EMAIL", data.email);
             parameters.Add("MOBILE_NO", data.mobileNumber);
             parameters.Add("CUST_ID", "1");
-            parameters.Add("ORDER_ID", data.orderid);
+            parameters.Add("ORDER_ID", LatestOrder.ID.ToString());
             parameters.Add("TXN_AMOUNT", data.amount);
             parameters.Add("CALLBACK_URL", "https://localhost:44325/Home/paytmResponse.net"); //This parameter is not mandatory. Use this to pass the callback url dynamically.
 
             string checksum = paytm.CheckSum.generateCheckSum(merchantKey, parameters);
-            string paytmURL = "https://securegw-stage.paytm.in/theia/processTransaction?orderid=" + parameters.FirstOrDefault(x=>x.Key == "ORDER_ID").Value;
+            string paytmURL = "https://securegw-stage.paytm.in/theia/processTransaction?orderid=" + LatestOrder.ID.ToString();
 
             string outputHTML = "<html>";
             outputHTML += "<head>";

@@ -1,4 +1,4 @@
-﻿@{ 
+﻿@{
     //ConfigurationsService configurationsService = new ConfigurationsService();
 }
 
@@ -33,12 +33,15 @@
     <script type="text/javascript" src="~/Content/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="~/Content/js/plugins.js"></script>
     <script type="text/javascript" src="~/Content/js/scripts.js"></script>
+    <script src="~/Content/js/jquery.cookie.js"></script>
+    @RenderSection("featured", required: false)
+    @RenderSection("scripts", required: false)
 
 </head>
 <body class="relative">
 
     <!-- Preloader -->
-   @* <div class="loader-mask">
+    @* <div class="loader-mask">
             <div class="loader">
                 <div></div>
                 <div></div>
@@ -91,7 +94,7 @@
                         <ul class="top-bar-acc">
                             <li class="top-bar-link"><a href="#">My Wishlist</a></li>
                             <li class="top-bar-link"><a href="#">Newsletter</a></li>
-                            <li class="top-bar-link"><a href="#">Login</a></li>
+                            <li class="top-bar-link"><a href="@Url.Action("Login", "Account")">Login</a></li>
                         </ul>
 
                     </div>
@@ -139,11 +142,11 @@
                                         <li class="dropdown">
                                             <a href="@Url.Action("Index", "Home")">Home</a>
                                             @*<i class="fa fa-angle-down dropdown-trigger"></i>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="index.html">Home</a></li>
-                                                <li><a href="index-2.html">Home 2</a></li>
-                                                <li><a href="index-3.html">Home 3</a></li>
-                                            </ul>*@
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="index.html">Home</a></li>
+                                                    <li><a href="index-2.html">Home 2</a></li>
+                                                    <li><a href="index-3.html">Home 3</a></li>
+                                                </ul>*@
                                         </li>
 
                                         <li class="dropdown">
@@ -153,12 +156,12 @@
                                                 <li><a href="/Home/About">About Us</a></li>
                                                 <li><a href="/Home/Contact">Contact</a></li>
                                                 @*<li><a href="faq.html">F.A.Q</a></li>
-                                                <li><a href="404.html">404</a></li>*@
+                                                    <li><a href="404.html">404</a></li>*@
                                             </ul>
                                         </li>
 
                                         <li class="dropdown">
-                                            <a href="#">Shop</a>
+                                            <a href="@Url.Action("Index", "Shop")">Shop</a>
                                             <i class="fa fa-angle-down dropdown-trigger"></i>
                                             <ul class="dropdown-menu megamenu-wide">
                                                 <li>
@@ -206,14 +209,17 @@
                                             </ul>
                                         </li>
 
-                                        <li class="dropdown">
+                                        @*<li class="dropdown">
                                             <a href="#">Elements</a>
                                             <i class="fa fa-angle-down dropdown-trigger"></i>
                                             <ul class="dropdown-menu">
                                                 <li><a href="shortcodes.html">Shortcodes</a></li>
                                                 <li><a href="typography.html">Typography</a></li>
                                             </ul>
-                                        </li> <!-- end elements -->
+                                        </li>*@ 
+                                        <li>
+                                            <a href="/Donor">Donate</a>
+                                        </li><!-- end elements -->
 
                                         <li class="mobile-links hidden-lg hidden-md">
                                             <a href="#">My Account</a>
@@ -246,12 +252,12 @@
                                     <li class="nav-cart">
                                         <div class="nav-cart-outer">
                                             <div class="nav-cart-inner">
-                                                <a href="#" class="nav-cart-icon">
-                                                    0
+                                                <a href="@Url.Action("Checkout", "Shop")" class="nav-cart-icon">
+                                                    <span id="productsCartCount">0</span>
                                                 </a>
                                             </div>
                                         </div>
-                                        <div class="nav-cart-container">
+                                        <!--<div class="nav-cart-container">
                                             <div class="nav-cart-items">
 
                                                 <div class="nav-cart-item clearfix">
@@ -294,9 +300,9 @@
                                                     </div>
                                                 </div>
 
-                                            </div> <!-- end cart items -->
-
-                                            <div class="nav-cart-summary">
+                                            </div>-->
+                                        <!-- end cart items -->
+                                        <!--<div class="nav-cart-summary">
                                                 <span>Cart Subtotal</span>
                                                 <span class="total-price">$1799.00</span>
                                             </div>
@@ -305,7 +311,7 @@
                                                 <a href="shop-cart.html" class="btn btn-md btn-dark"><span>View Cart</span></a>
                                                 <a href="shop-checkout.html" class="btn btn-md btn-color mt-10"><span>Proceed to Checkout</span></a>
                                             </div>
-                                        </div>
+                                        </div>-->
                                     </li>
                                 </ul>
                             </div>
@@ -315,9 +321,9 @@
                 </div> <!-- end navigation -->
             </nav> <!-- end navbar -->
         </header>
-        
+
         <div class="content-wrapper oh">
-            
+
             @RenderBody()
             <section class="newsletter" id="subscribe">
                 <div class="container">

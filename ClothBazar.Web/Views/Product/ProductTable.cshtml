@@ -64,6 +64,7 @@
                         <td class="wrap-td">
                             <button class="editBtn" data-id="@product.ID">Edit</button>
                             <button class="deleteBtn" data-id="@product.ID">Delete</button>
+                            <button class="addToCart" type="button" data-id="@product.ID">Add To Cart</button>
                         </td>
                     </tr>
                 }
@@ -146,6 +147,16 @@
                     alert("FAIL");
                 });
         }
+    });
+    var products = [];
+    $(".addToCart").click(function () {
+
+        var productID = $(this).attr("data-id");
+        products.push(productID);
+
+        $.cookie('AddtoCart', products.join('-'), { path: '/' });
+
+        alert("Products added to cart");
     });
 
     function focusAction() {

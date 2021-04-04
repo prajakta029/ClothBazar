@@ -1,10 +1,7 @@
 ﻿@model ClothBazar.Web.ViewModels.HomeViewModel
 @{
     ViewBag.Title = "Home Page";
-    //var firstCategory = Model.FeaturedCategories.First(); 
-    var firstCategory = Model.FeaturedCategories[0];
-    var secondCategory = Model.FeaturedCategories[1];
-    var thirdCategory = Model.FeaturedCategories[2];
+    //var firstCategory = Model.FeaturedCategories.First();
 }
 
 <!-- Hero Slider -->
@@ -53,58 +50,66 @@
     </div>
 </section> <!-- end hero slider -->
 <!-- Promo Banners -->
-<section class="section-wrap promo-banners pb-30">
-    <div class="container">
-        <div class="row">
+@if (Model.FeaturedCategories != null && Model.FeaturedCategories.Count >= 3)
+{
+    var firstCategory = Model.FeaturedCategories[0];
+    var secondCategory = Model.FeaturedCategories[1];
+    var thirdCategory = Model.FeaturedCategories[2];
 
-            <div class="col-xs-4 col-xxs-12 mb-30 promo-banner">
-                @if (firstCategory != null)
-                {
-                <a href="#">
-                    <img src="@firstCategory.ImageURL" alt="image">
-                    <div class="overlay"></div>
-                    <div class="promo-inner valign">
-                        <h2>@firstCategory.Name</h2>
-                        <span>Best Selling Deals</span>
-                    </div>
-                </a>
-                }
+    <section class="section-wrap promo-banners pb-30">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-xs-4 col-xxs-12 mb-30 promo-banner">
+                    @if (firstCategory != null)
+                    {
+                        <a href="#">
+                            <img src="@firstCategory.ImageURL" alt="image">
+                            <div class="overlay"></div>
+                            <div class="promo-inner valign">
+                                <h2>@firstCategory.Name</h2>
+                                <span>Best Selling Deals</span>
+                            </div>
+                        </a>
+                    }
+                </div>
+
+                <div class="col-xs-4 col-xxs-12 mb-30 promo-banner">
+                    @if (secondCategory != null)
+                    {
+                        <a href="#">
+                            <img src="@secondCategory.ImageURL" alt="image">
+                            <div class="overlay"></div>
+                            <div class="promo-inner valign">
+                                <h2>@secondCategory.Name</h2>
+                                <span>Hot Trends</span>
+                            </div>
+                        </a>
+                    }
+                </div>
+
+                <div class="col-xs-4 col-xxs-12 mb-30 promo-banner">
+                    @if (thirdCategory != null)
+                    {
+
+                        <a href="#">
+                            <img src="@thirdCategory.ImageURL" alt="image">
+                            <div class="overlay"></div>
+                            <div class="promo-inner valign">
+                                <h2>@thirdCategory.Name</h2>
+                                <span>New Collection</span>
+                            </div>
+                        </a>
+                    }
+                </div>
+
             </div>
-
-            <div class="col-xs-4 col-xxs-12 mb-30 promo-banner">
-                @if (secondCategory != null)
-                {
-                <a href="#">
-                    <img src="@secondCategory.ImageURL" alt="image">
-                    <div class="overlay"></div>
-                    <div class="promo-inner valign">
-                        <h2>@secondCategory.Name</h2>
-                        <span>Hot Trends</span>
-                    </div>
-                </a>
-                }
-            </div>
-
-            <div class="col-xs-4 col-xxs-12 mb-30 promo-banner">
-                @if (thirdCategory != null)
-                {
-
-                 <a href="#">
-                    <img src="@thirdCategory.ImageURL" alt="image">
-                    <div class="overlay"></div>
-                    <div class="promo-inner valign">
-                    <h2>@thirdCategory.Name</h2>
-                    <span>New Collection</span>
-                    </div>
-                 </a>
-                }
-            </div>
-
         </div>
-    </div>
-</section> <!-- end promo banners -->
+    </section>
+}
+<!-- end promo banners -->
 <!-- Trendy Products -->
-<section class="section-wrap-sm new-arrivals pb-50">
+<!--<section class="section-wrap-sm new-arrivals pb-50">
     <div class="container">
 
         <div class="row heading-row">
@@ -409,9 +414,11 @@
                     </div>
                 </div>
             </div>
-        </div> <!-- end row -->
-    </div>
-</section> <!-- end trendy products -->
+        </div>-->
+<!-- end row -->
+<!--</div>
+</section>-->
+<!-- end trendy products -->
 <!-- Testimonials -->
 <section class="section-wrap relative testimonials bg-parallax overlay" style="background-image:url(/Content/images/bag2.jpg);">
     <div class="container relative">
@@ -448,8 +455,13 @@
     </div>
 
 </section> <!-- end testimonials -->
+
+@{
+    Html.RenderAction("Products", "Widgets", new { isLatestProducts = true });
+}
+
 <!-- Product Widgets List -->
-<section class="section-wrap products-list">
+<!--<section class="section-wrap products-list">
     <div class="container">
         <div class="row">
 
@@ -493,125 +505,129 @@
                         </span>
                     </li>
                 </ul>
-            </div> <!-- end special offer -->
-
-            <div class="col-md-3 col-sm-6 col-xs-12 mb-40 products-widget">
-                <h3 class="widget-title bottom-line full-grey">Bestsellers</h3>
-                <ul class="product-list-widget">
-                    <li class="clearfix">
-                        <a href="shop-single-product.html">
-                            <img src="~/Content/images/shop/shop_item_9.jpg" alt="">
-                            <span class="product-title">Camo Belt</span>
-                        </a>
-                        <span class="price">
-                            <ins>
-                                <span class="amount">$33.00</span>
-                            </ins>
-                        </span>
-                    </li>
-                    <li class="clearfix">
-                        <a href="shop-single-product.html">
-                            <img src="~/Content/images/shop/shop_item_10.jpg" alt="">
-                            <span class="product-title">Heathered Scarf</span>
-                        </a>
-                        <span class="price">
-                            <ins>
-                                <span class="amount">$180.00</span>
-                            </ins>
-                        </span>
-                    </li>
-                    <li class="clearfix">
-                        <a href="shop-single-product.html">
-                            <img src="~/Content/images/shop/shop_item_11.jpg" alt="">
-                            <span class="product-title">Mattle Brown Bag</span>
-                        </a>
-                        <span class="price">
-                            <ins>
-                                <span class="amount">$150.00</span>
-                            </ins>
-                        </span>
-                    </li>
-                </ul>
-            </div> <!-- end bestsellers -->
-
-            <div class="col-md-3 col-sm-6 col-xs-12 mb-40 products-widget">
-                <h3 class="widget-title bottom-line full-grey">Accessories</h3>
-                <ul class="product-list-widget">
-                    <li class="clearfix">
-                        <a href="shop-single-product.html">
-                            <img src="~/Content/images/shop/shop_item_5.jpg" alt="">
-                            <span class="product-title">Lola May Crop Blazer</span>
-                        </a>
-                        <span class="price">
-                            <ins>
-                                <span class="amount">$42.00</span>
-                            </ins>
-                        </span>
-                    </li>
-                    <li class="clearfix">
-                        <a href="shop-single-product.html">
-                            <img src="~/Content/images/shop/shop_item_7.jpg" alt="">
-                            <span class="product-title">Watch</span>
-                        </a>
-                        <span class="price">
-                            <ins>
-                                <span class="amount">$280.00</span>
-                            </ins>
-                        </span>
-                    </li>
-                    <li class="clearfix">
-                        <a href="shop-single-product.html">
-                            <img src="~/Content/images/shop/shop_item_8.jpg" alt="">
-                            <span class="product-title">Jersey Stylish</span>
-                        </a>
-                        <span class="price">
-                            <ins>
-                                <span class="amount">$289.00</span>
-                            </ins>
-                        </span>
-                    </li>
-                </ul>
-            </div> <!-- end top rated -->
-
-            <div class="col-md-3 col-sm-6 col-xs-12 products-widget last">
-                <h3 class="widget-title bottom-line full-grey">top rated</h3>
-                <ul class="product-list-widget">
-                    <li class="clearfix">
-                        <a href="shop-single-product.html">
-                            <img src="~/Content/images/shop/shop_item_4.jpg" alt="">
-                            <span class="product-title">Sweater w/ Colar</span>
-                        </a>
-                        <span class="price">
-                            <ins>
-                                <span class="amount">$299.00</span>
-                            </ins>
-                        </span>
-                    </li>
-                    <li class="clearfix">
-                        <a href="shop-single-product.html">
-                            <img src="~/Content/images/shop/shop_item_6.jpg" alt="">
-                            <span class="product-title">Faux Suits</span>
-                        </a>
-                        <span class="price">
-                            <ins>
-                                <span class="amount">$233.00</span>
-                            </ins>
-                        </span>
-                    </li>
-                    <li class="clearfix">
-                        <a href="shop-single-product.html">
-                            <img src="~/Content/images/shop/shop_item_12.jpg" alt="">
-                            <span class="product-title">Sport T-Shirt</span>
-                        </a>
-                        <span class="price">
-                            <ins>
-                                <span class="amount">$230.00</span>
-                            </ins>
-                        </span>
-                    </li>
-                </ul>
-            </div> <!-- end sales -->
-
-        </div> <!-- end row -->
-    </div>
-</section> <!-- end product widgets -->
+            </div>-->
+ <!-- end special offer -->
+<!--<div class="col-md-3 col-sm-6 col-xs-12 mb-40 products-widget">
+    <h3 class="widget-title bottom-line full-grey">Bestsellers</h3>
+    <ul class="product-list-widget">
+        <li class="clearfix">
+            <a href="shop-single-product.html">
+                <img src="~/Content/images/shop/shop_item_9.jpg" alt="">
+                <span class="product-title">Camo Belt</span>
+            </a>
+            <span class="price">
+                <ins>
+                    <span class="amount">$33.00</span>
+                </ins>
+            </span>
+        </li>
+        <li class="clearfix">
+            <a href="shop-single-product.html">
+                <img src="~/Content/images/shop/shop_item_10.jpg" alt="">
+                <span class="product-title">Heathered Scarf</span>
+            </a>
+            <span class="price">
+                <ins>
+                    <span class="amount">$180.00</span>
+                </ins>
+            </span>
+        </li>
+        <li class="clearfix">
+            <a href="shop-single-product.html">
+                <img src="~/Content/images/shop/shop_item_11.jpg" alt="">
+                <span class="product-title">Mattle Brown Bag</span>
+            </a>
+            <span class="price">
+                <ins>
+                    <span class="amount">$150.00</span>
+                </ins>
+            </span>
+        </li>
+    </ul>
+</div>-->
+ <!-- end bestsellers -->
+<!--<div class="col-md-3 col-sm-6 col-xs-12 mb-40 products-widget">
+    <h3 class="widget-title bottom-line full-grey">Accessories</h3>
+    <ul class="product-list-widget">
+        <li class="clearfix">
+            <a href="shop-single-product.html">
+                <img src="~/Content/images/shop/shop_item_5.jpg" alt="">
+                <span class="product-title">Lola May Crop Blazer</span>
+            </a>
+            <span class="price">
+                <ins>
+                    <span class="amount">$42.00</span>
+                </ins>
+            </span>
+        </li>
+        <li class="clearfix">
+            <a href="shop-single-product.html">
+                <img src="~/Content/images/shop/shop_item_7.jpg" alt="">
+                <span class="product-title">Watch</span>
+            </a>
+            <span class="price">
+                <ins>
+                    <span class="amount">$280.00</span>
+                </ins>
+            </span>
+        </li>
+        <li class="clearfix">
+            <a href="shop-single-product.html">
+                <img src="~/Content/images/shop/shop_item_8.jpg" alt="">
+                <span class="product-title">Jersey Stylish</span>
+            </a>
+            <span class="price">
+                <ins>
+                    <span class="amount">$289.00</span>
+                </ins>
+            </span>
+        </li>
+    </ul>
+</div>-->
+ <!-- end top rated -->
+<!--<div class="col-md-3 col-sm-6 col-xs-12 products-widget last">
+    <h3 class="widget-title bottom-line full-grey">top rated</h3>
+    <ul class="product-list-widget">
+        <li class="clearfix">
+            <a href="shop-single-product.html">
+                <img src="~/Content/images/shop/shop_item_4.jpg" alt="">
+                <span class="product-title">Sweater w/ Colar</span>
+            </a>
+            <span class="price">
+                <ins>
+                    <span class="amount">$299.00</span>
+                </ins>
+            </span>
+        </li>
+        <li class="clearfix">
+            <a href="shop-single-product.html">
+                <img src="~/Content/images/shop/shop_item_6.jpg" alt="">
+                <span class="product-title">Faux Suits</span>
+            </a>
+            <span class="price">
+                <ins>
+                    <span class="amount">$233.00</span>
+                </ins>
+            </span>
+        </li>
+        <li class="clearfix">
+            <a href="shop-single-product.html">
+                <img src="~/Content/images/shop/shop_item_12.jpg" alt="">
+                <span class="product-title">Sport T-Shirt</span>
+            </a>
+            <span class="price">
+                <ins>
+                    <span class="amount">$230.00</span>
+                </ins>
+            </span>
+        </li>
+    </ul>
+</div>-->
+ <!-- end sales -->
+<!--</div>--> <!-- end row -->
+<!--</div>
+</section>-->
+ <!-- end product widgets -->
+@*@{
+        Html.RenderAction("Products", "Widgets", new { isLatestProducts = false });
+    }*@

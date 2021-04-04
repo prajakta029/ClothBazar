@@ -121,7 +121,7 @@
                             </div>
                         </div>
 
-                        <a href="#" class="btn btn-dark btn-lg add-to-cart"><span>Add to Cart</span></a>
+                        <a href="#" class="btn btn-dark btn-lg add-to-cart productAddToCart" data-id="@Model.Product.ID"><span>Add to Cart</span></a>
 
                         <a href="#" class="product-add-to-wishlist"><i class="fa fa-heart"></i></a>
                     </div>
@@ -252,3 +252,22 @@
     </section> <!-- end related products -->
 
 }
+<script>
+    var products;
+    $(".productAddToCart").click(function () {
+
+        var existingCookiedata = $.cookie('AddtoCart');
+        if (existingCookiedata != undefined && existingCookiedata != "" && existingCookiedata != null) {
+            products = existingCookiedata.split('-');
+        }
+        else {
+            products = [];
+        }
+        var productID = $(this).attr("data-id");
+        products.push(productID);
+
+        $.cookie('AddtoCart', products.join('-'), { path: '/' });
+        updateCartProducts();
+        alert("Product added to cart");
+    });
+</script>

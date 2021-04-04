@@ -1,7 +1,7 @@
-(function($){
-
-  "use strict"; 
-
+(function ($) {
+    
+    "use strict";
+    
   $(window).on('load', function() {
 
     // Preloader
@@ -695,6 +695,20 @@
     $('html, body').animate({scrollTop: 0}, 1350, "easeInOutQuint");
     return false;
   });
-
-
+    $(function () {
+        updateCartProducts();
+    });
 })(jQuery);
+function updateCartProducts() {
+    var cartProducts;
+    var existingCookiedata = $.cookie('AddtoCart');
+    if (existingCookiedata != undefined && existingCookiedata != "" && existingCookiedata != null) {
+        cartProducts = existingCookiedata.split('-');
+    }
+    else {
+        cartProducts = [];
+    }
+    $("#productsCartCount").html(cartProducts.length);
+};
+    
+    

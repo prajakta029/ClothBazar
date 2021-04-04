@@ -1,0 +1,66 @@
+﻿﻿@model DonorViewModel
+@{
+    ViewBag.Title = "Donor Table";
+}
+
+
+
+<div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td>No. of Items</td>
+                <td>Description</td>
+                <td>Address</td>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Donors != null && Model.Donors.Count > 0)
+            {
+
+                foreach (var donor in Model.Donors)
+                {
+                    <tr>
+                        <td>@donor.itemsNumber</td>
+                        <td>
+                            @donor.dDescription
+                        </td>
+                        <td>@donor.donorAddress</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td class="text-danger" colspan="4">No Details found.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<h2>Donating Details</h2>
+
+<form id="donate" method="post" action="/Donor/Create">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Username</label>
+                <input class="form-control" type="text" name="donorUsername" />
+            </div>
+            <div class="form-group">
+                <label>No of Items</label>
+                <input class="form-control" type="number" name="itemsNumber" />
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <input class="form-control" name="dDescription" />
+            </div>
+            <div class="form-group">
+                <label>Address</label>
+                <input class="form-control" name="donorAddress" />
+            </div>
+            <button id="saveBtn" type="submit" class="btn btn-primary">Save</button>
+        </div>
+    </div>
+</form>
